@@ -1,0 +1,9 @@
+,measure,subject,mask,rater1,rater2,score
+0,Dilated_Dice_overlap,112,mgn-l,aax,opx,0.9482551
+1,Dilated_Dice_overlap,113,mgn-l,aax,opx,0.9351312
+2,Dilated_Dice_overlap,114,mgn-l,aax,opx,0.88175184
+3,Dilated_Dice_overlap,115,mgn-l,aax,opx,0.8559411
+4,Dilated_Dice_overlap,117,mgn-l,aax,opx,0.91366905
+5,Dilated_Dice_overlap,118,mgn-l,aax,opx,0.95105326
+6,Dilated_Dice_overlap,119,mgn-l,aax,opx,0.63272727
+7,Dilated_Dice_overlap,120,mgn-l,aax,opx,0.74542564

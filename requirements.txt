@@ -1,0 +1,17 @@
+os
+sys
+csv
+rpy2
+math
+numpy
+scipy
+regex
+pandas
+pingouin
+seaborn
+matplotlib
+jupyter
+ipython
+ipykernel
+ipywidgets
+ipython-genutils
