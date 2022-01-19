@@ -1,4 +1,4 @@
----------- INSTRUCTIONS TO RUN THE CODE if you want ----------
+---------- INSTRUCTIONS TO RUN THE CODE ----------
 
 - open the dataProcessing.py file in an IDE with a python terminal
 - make sure the directory of the terminal is the BScThesisAnalysis folder
