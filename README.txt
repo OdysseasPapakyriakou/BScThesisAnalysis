@@ -21,17 +21,17 @@ the data. It should contain 4 python files and the subdirectory
 - simulation	 --> simulates data based on the sample mean and sd for
 		     11, 15, 20, 30, 50, and 75 observations per group
 - visualizations --> contains a couple of functions for boxplots and scatterplots
-	
+
+- BayesianMannWhitneyTest (the code is based on the source code of JASP)
+  https://github.com/jasp-stats/jaspTTests/blob/master/R/ttestbayesianindependentsamples.R
 	|
-	|
-	BayesianMannWhitneyTest (the code is based on the source code of JASP)
-	https://github.com/jasp-stats/jaspTTests/blob/master/R/ttestbayesianindependentsamples.R
-		- gibbs.py
-		- truncation.py
-		- BayesFactorWilcoxon.py 
-  			--> these 3 files are used to run the analysis: 
-			    a Bayesian Mann Whitney U test
-      			    (which is also referred to as the Wilcoxon rank-sum test)
+	|	
+	- gibbs.py
+	- truncation.py
+	- BayesFactorWilcoxon.py 
+  		--> these 3 files are used to run the analysis: 
+		    a Bayesian Mann Whitney U test
+      		    (which is also referred to as the Wilcoxon rank-sum test)
 
 The demographic data and the volume data are in the inputData folder in excel files.
 
