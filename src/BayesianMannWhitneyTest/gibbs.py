@@ -39,7 +39,7 @@ def rankSumGibbsSampler(xvals, yvals, nSamples=1000, caucyPrior=1 / sqrt(2),
     allVals = pd.concat([xvals, yvals], ignore_index=True)
     allRanks = allVals.rank().tolist()
 
-    xRanks = allRanks[0:(n1 - 1)]
+    xRanks = allRanks[0:n1]
     yRanks = allRanks[n1:]
 
     deltaSamples = [0] * nSamples
@@ -64,7 +64,7 @@ def rankSumGibbsSampler(xvals, yvals, nSamples=1000, caucyPrior=1 / sqrt(2),
 
                 currentVals[i] = truncNormSample(currentBounds[0], currentBounds[1], mu=oldDeltaProp, sd=1)
 
-            xvals = currentVals[:(n1 - 1)]
+            xvals = currentVals[:n1]
             yvals = currentVals[n1:]
 
             gibbsResult = sampleGibbsTwoSampleWilcoxon(x=xvals,
