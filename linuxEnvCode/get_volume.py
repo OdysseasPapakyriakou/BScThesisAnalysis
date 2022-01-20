@@ -1,8 +1,6 @@
 # Name: Odysseas Papakyriakou
-# UvA student ID: 12632864
 
 # only to be used within the linux subsystem
-
 import nibabel
 import nighres
 from pathlib import Path
@@ -95,8 +93,8 @@ class Delineations:
 if __name__ == "__main__":
     """Specify the parameters here. This code will not be executed if the modules are imported later"""
     
-    subs = [16,23,35,44,55,60,75,76,82,111,
-            112,113,114,115,116,117,118,119,120,121]
+    subs = [16,23,35,44,54,55,60,75,76,82,84,
+            111,112,113,114,115,116,117,118,119,120,121]
     structure = "mgn"
     side = str(input("Type 'l' for the left hemisphere OR 'r' for the right hemisphere: "))
     rater = "opx"
