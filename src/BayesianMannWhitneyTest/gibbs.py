@@ -4,25 +4,42 @@ from math import sqrt
 
 
 def sampleGibbsTwoSampleWilcoxon(x, y, nIter=10, rscale=1 / sqrt(2)):
+    """Samples δ, the parameter for the difference between the ranks,
+    from (δ | rankX, rankY, g) ~ N(μδ, σδ) where Ν is a truncated normal distribution
+    g is proportional (~) to the inverse Gamma distribution(1, (δ^2+γ^2)/2)
+    parameters
+    ----------
+    x: list
+       the sampled xRanks as estimated within the rankSumGibbsSampler() function
+    y: list
+       the sampled yRanks as estimated within the rankSumGibbsSampler() function
+    nIter: int
+           how many loops the function performs
+    rscale: int/float
+            the scale parameter of the cauchy prior distribution
+    ----------
+    returns an estimate for δ"""
+
     meanX = np.mean(x)
     meanY = np.mean(y)
     n1 = len(x)
     n2 = len(y)
-    # arbitrary number for sigma
+    # because the rank data contain no information about the sd, set sd to 1
     sigmaSq = 1
     g = 1
 
     delta = float
     for i in range(nIter):
-        # sample mu
+        # σδ^2
         varMu = (4 * g * sigmaSq) / (4 + g * (n1 + n2))
+        # μδ
         meanMu = (2 * g * (n2 * meanY - n1 * meanX)) / ((g * (n1 + n2) + 4))
+        # sample mu
         mu = stats.norm.rvs(loc=meanMu, scale=sqrt(varMu), size=1)
 
         # sample g
         betaG = (mu ** 2 + sigmaSq * rscale ** 2) / (2 * sigmaSq)
-        # g = 1/np.random.gamma(size=1, shape=1, scale=1/betaG)
-        g = 1 / stats.gamma.rvs(a=1, loc=1, size=1, scale=1 / betaG, )
+        g = 1 / stats.gamma.rvs(a=betaG, loc=1, size=1, scale=1 / betaG)
 
         # convert to delta
         delta = mu / sqrt(sigmaSq)
@@ -32,6 +49,31 @@ def sampleGibbsTwoSampleWilcoxon(x, y, nIter=10, rscale=1 / sqrt(2)):
 
 def rankSumGibbsSampler(xvals, yvals, nSamples=1000, caucyPrior=1 / sqrt(2),
                         nBurnin=1, nGibbsIterations=10, nChains=5):
+    """Generates the latent distribution of δ, the parameter for the difference
+    between the ranked data
+
+    parameters
+    ----------
+    xvals: pd.Series
+           the values of the variable of interest for group x
+    yvals: pd.Series
+           the values of the variable of interest for group y
+    nSamples: int
+              the number of samples for the parameter δ,
+              which is the difference between the ranked data
+    caucyPrior: int/float
+                the scale parameter of the cauchy distribution as a prior"
+    nBurnin: int
+             the number of δ samples chains to throw away
+             this is because the initial samples usually don't reach convergence
+    nGibbsIterations: int
+                      how many loops the sampleGibbsTwoSampleWilcoxon() function performs
+    nChains: int
+             in how many loops (=chains) the samples are estimated
+    ----------
+    returns a list
+            rHat: an estimate of variance. If it is ~1, then there is convergence
+            deltaSamplesMatrix (flat): the (flattened) estimates for δ"""
 
     n1 = len(xvals)
     n2 = len(yvals)
@@ -48,7 +90,6 @@ def rankSumGibbsSampler(xvals, yvals, nSamples=1000, caucyPrior=1 / sqrt(2),
     for chain in range(nChains):
         print("Starting chain: ", chain + 1, "/", nChains)
         currentVals = sorted(stats.norm.rvs(loc=0, scale=1, size=(n1 + n2)))
-        # currentVals = sorted(np.random.normal(loc=0, scale=1,size=(n1 + n2)))
         oldDeltaProp = 0
         for j in range(nSamples):
             if j % 500 == 0:

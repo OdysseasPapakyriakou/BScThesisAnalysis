@@ -5,6 +5,21 @@ from scipy import stats
 
 
 def computeBayesFactorWilcoxon(deltaSamples, cauchyPrior, oneSided):
+    """Computes the Bayes Factor for the Wilcoxon rank-sum test.
+    This test is also known as the Mann-Whitney U test.
+    Logspline density estimation is done with a function imported from R
+
+    parameters
+    ----------
+    deltaSamples: list
+                  the samples for δ, as returned from the rankSumGibbsSampler() function
+    cauchyPrior: int/float
+                 the scale parameter of the cauchy distribution (the prior)
+    oneSided: False, "right", or "left"
+              whether the hypothesis is two-sided, left or right
+    ----------
+    returns the Bayes Factor for the Wilcoxon rank-sum test"""
+
     logspline = rpackages.importr("logspline")
     postDens = logspline.logspline(deltaSamples)
 

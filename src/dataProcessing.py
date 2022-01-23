@@ -322,7 +322,7 @@ if __name__ == "__main__":
     # move to project location instead of source code location
     parent = os.path.dirname(os.getcwd())
     os.chdir(parent)
-
+    # test functions here
     readMASSP()
     # data = getFinalData()
     # for i in [11, 15, 20, 30, 50, 75]:

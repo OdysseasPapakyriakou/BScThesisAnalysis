@@ -1,5 +1,6 @@
 ---------- INSTRUCTIONS TO RUN THE CODE ----------
 
+- clone the repository from git
 - open the dataProcessing.py file in an IDE with a python terminal
 - make sure the directory of the terminal is the BScThesisAnalysis folder
 - in the python terminal type: pip install -r requirements.txt
