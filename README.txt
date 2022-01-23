@@ -23,10 +23,10 @@ the data. It should contain 4 python files and the subdirectory
 		     11, 15, 20, 30, 50, and 75 observations per group
 - visualizations --> contains a couple of functions for boxplots and scatterplots
 
-- BayesianMannWhitneyTest (the code is based on the source code of JASP:
+- BayesianMannWhitneyTest ( the code is based on the source code of JASP:
   https://github.com/jasp-stats/jaspTTests/blob/master/R/ttestbayesianindependentsamples.R
   and on the article by van Doorn et al., 2020, on Bayesian rank-based hypothesis testing:
-  https://www.tandfonline.com/doi/full/10.1080/02664763.2019.1709053)
+  https://www.tandfonline.com/doi/full/10.1080/02664763.2019.1709053 )
 
 	|
 	|	
