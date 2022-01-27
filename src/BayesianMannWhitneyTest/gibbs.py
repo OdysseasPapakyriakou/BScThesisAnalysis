@@ -1,3 +1,5 @@
+# Name: Odysseas Papakyriakou
+
 import pandas as pd
 from truncation import *
 from math import sqrt

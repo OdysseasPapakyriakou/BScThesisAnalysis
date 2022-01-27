@@ -1,3 +1,5 @@
+# Name: Odysseas Papakyriakou
+
 import os
 import numpy as np
 import regex as re

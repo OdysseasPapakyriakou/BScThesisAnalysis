@@ -1,4 +1,5 @@
 # Name: Odysseas Papakyriakou
+# this code is adapted from the code of senior staff members of the IMCN unit at the UvA
 
 # only to be used within the linux subsystem
 import nibabel

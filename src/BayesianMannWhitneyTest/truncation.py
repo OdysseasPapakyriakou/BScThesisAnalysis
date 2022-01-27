@@ -1,3 +1,5 @@
+# Name: Odysseas Papakyriakou
+
 import numpy as np
 import math
 from scipy import stats

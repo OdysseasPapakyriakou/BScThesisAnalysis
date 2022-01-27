@@ -1,3 +1,5 @@
+# Name: Odysseas Papakyriakou
+
 # only to be used in Jupyter, it doesn't run locally
 import numpy as np
 import rpy2.robjects.packages as rpackages

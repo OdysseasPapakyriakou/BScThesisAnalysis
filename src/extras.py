@@ -1,3 +1,5 @@
+# Name: Odysseas Papakyriakou
+
 # these function were implemented, but not used in the analysis
 import csv
 import numpy as np
