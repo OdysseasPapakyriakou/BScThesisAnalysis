@@ -7,6 +7,7 @@ import pandas as pd
 import pingouin as pg
 
 from extras import readMASSP
+from visualizations import *
 from simulation import simulateData
 
 
@@ -325,8 +326,10 @@ if __name__ == "__main__":
     parent = os.path.dirname(os.getcwd())
     os.chdir(parent)
     # test functions here
-    readMASSP()
-    # data = getFinalData()
+    # readMASSP()
+    data = getFinalData()
+    boxplots(data)
+    scatterplots(data)
     # for i in [11, 15, 20, 30, 50, 75]:
     #     simulateData(data, i)
 
