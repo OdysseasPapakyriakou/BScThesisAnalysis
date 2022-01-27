@@ -5,6 +5,8 @@ import numpy as np
 import regex as re
 import pandas as pd
 import pingouin as pg
+# numpy uses population std, so use this
+from statistics import stdev
 
 from extras import readMASSP
 from visualizations import *
@@ -230,23 +232,29 @@ def lateralizationEffect(lHC, rHC, lPD, rPD):
 
     volLHC = lHC["volume"].tolist()
     volRHC = rHC["volume"].tolist()
+    meanLHC = round(float(np.mean(volLHC)), 2)
+    sdLHC = round(float(stdev(volLHC)), 2)
+    meanRHC = round(float(np.mean(volRHC)), 2)
+    sdRHC = round(float(stdev(volRHC)), 2)
     wHC = pg.wilcoxon(volLHC, volRHC, alternative="two-sided")
 
     volLPD = lPD["volume"].tolist()
     volRPD = rPD["volume"].tolist()
+    meanLPD = round(float(np.mean(volLPD)), 2)
+    sdLPD = round(float(stdev(volLPD)), 2)
+    meanRPD = round(float(np.mean(volRPD)), 2)
+    sdRPD = round(float(stdev(volRPD)), 2)
     wPD = pg.wilcoxon(volLPD, volRPD, alternative="two-sided")
 
     if wHC["p-val"][0] > 0.05:
-        print("The mean volume of the left hemisphere is", np.mean(volLHC), "and the mean volume of the right "
-              "hemisphere is", np.mean(volRHC), "\nThis difference between the hemispheric volumes of the mgn "
-              "is not significant for the healthy controls, W =", wHC["W-val"][0], "and p =", wHC["p-val"][0],
-              "for a two-sided alternative hypothesis.\n")
+        print("For the healthy controls, the difference between the left (M =", meanLHC, "SD =", sdLHC, ")\n"
+              "and the right (M =", meanRHC, "SD =", sdRHC, ") hemisphere is not statistically significant\n"
+              "W =", wHC["W-val"][0], "p =", wHC["p-val"][0], "for a two-sided alternative hypothesis.\n")
 
     if wPD["p-val"][0] > 0.05:
-        print("The mean volume of the left hemisphere is", np.mean(volLPD), "and the mean volume of the right "
-              "hemisphere is", np.mean(volRPD), "\nThis difference between the hemispheric volumes of the mgn "
-              "is not significant for the PD patients, W =", wPD["W-val"][0], "and p =", wHC["p-val"][0],
-              "for a two-sided alternative hypothesis.\n")
+        print("For the PD patients, the difference between the left (M =", meanLPD, "SD =", sdLPD, ")\n"
+              "and the right hemisphere (M =", meanRPD, "SD =", sdRPD, ") is not statistically significant\n"
+              "W =", wPD["W-val"][0], "p =", wPD["p-val"][0], "for a two-sided alternative hypothesis.\n")
 
 
 def readDemoData(hcDemoDir, pdDemoDir):
@@ -328,8 +336,8 @@ if __name__ == "__main__":
     # test functions here
     # readMASSP()
     data = getFinalData()
-    boxplots(data)
-    scatterplots(data)
+    # boxplots(data)
+    # scatterplots(data)
     # for i in [11, 15, 20, 30, 50, 75]:
     #     simulateData(data, i)
 
