@@ -34,7 +34,6 @@ the data. It should contain 4 python files and the subdirectory
 	- BayesFactorWilcoxon.py 
   		--> these 3 files are used to run the analysis: 
 		    a Bayesian Mann Whitney U test
-      		    (which is also referred to as the Wilcoxon rank-sum test)
 
 The demographic data and the volume data are in the inputData folder in excel files.
 
