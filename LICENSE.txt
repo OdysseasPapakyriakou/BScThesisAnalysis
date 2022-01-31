@@ -1,0 +1,6 @@
+Copyright (C) 2022 University of Amsterdam
+
+The data in this project are exclusively owned by the University of Amsterdam.
+
+No permission is granted to any person/organization to use the data for any
+purpose, unless otherwise explicitly communicated
